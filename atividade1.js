@@ -18,5 +18,20 @@ let indiceDaFotoAtual = 0;
 
 // ...COMECE a implementar aqui <--------------------------------------------
 
+const btnAnteriorEl = document.querySelector('#anterior');
+const btnProximoEl = document.querySelector('#proximo');
+const imgEl = document.querySelector('#slide');
 
+const passarIimagem = (direcao) => {
+  if (indiceDaFotoAtual >= nomesDasImagens.length - 1 && direcao > 0) {
+    indiceDaFotoAtual = 0;
+  } else if (indiceDaFotoAtual <= 0 && direcao < 0) {
+    indiceDaFotoAtual = nomesDasImagens.length - 1;
+  } else {
+    indiceDaFotoAtual += direcao;
+  }
+  imgEl.src = servidorDasImagens + nomesDasImagens[indiceDaFotoAtual];
+}
 
+btnProximoEl.addEventListener('click', () => passarIimagem(1));
+btnAnteriorEl.addEventListener('click', () => passarIimagem(-1));
